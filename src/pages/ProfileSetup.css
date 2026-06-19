@@ -1,0 +1,187 @@
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ── Left Panel ─────────────────────────────────── */
+
+.profile-page__left {
+  flex: 1;
+  background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 52px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-page__logo {
+  width: 68px;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  margin-bottom: 22px;
+  backdrop-filter: blur(8px);
+}
+
+.profile-page__app-name {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.profile-page__tagline {
+  font-size: 1.05rem;
+  opacity: 0.82;
+  margin-bottom: 48px;
+}
+
+.profile-page__features {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-page__feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-page__feature-icon {
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.profile-page__feature span {
+  font-size: 0.95rem;
+  opacity: 0.88;
+  font-weight: 500;
+}
+
+/* Decorative circles */
+.profile-page__decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.deco-circle--1 {
+  width: 300px;
+  height: 300px;
+  top: -80px;
+  right: -80px;
+}
+
+.deco-circle--2 {
+  width: 200px;
+  height: 200px;
+  bottom: 60px;
+  left: -60px;
+}
+
+.deco-circle--3 {
+  width: 120px;
+  height: 120px;
+  bottom: -30px;
+  right: 80px;
+}
+
+/* ── Right Panel ─────────────────────────────────── */
+
+.profile-page__right {
+  flex: 1;
+  background: #f8faff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+}
+
+.profile-page__card {
+  background: white;
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 470px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.profile-page__card-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.profile-page__card-icon {
+  font-size: 2.8rem;
+  color: #667eea;
+  margin-bottom: 14px;
+}
+
+.profile-page__card-header h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.profile-page__card-header p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Responsive ────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .profile-page {
+    flex-direction: column;
+  }
+
+  .profile-page__left {
+    padding: 40px 28px 48px;
+  }
+
+  .profile-page__app-name {
+    font-size: 2rem;
+  }
+
+  .profile-page__tagline {
+    margin-bottom: 32px;
+  }
+
+  .profile-page__features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .profile-page__right {
+    padding: 32px 20px;
+  }
+
+  .profile-page__card {
+    padding: 30px 22px;
+  }
+}

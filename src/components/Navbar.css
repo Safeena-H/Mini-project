@@ -1,0 +1,59 @@
+.sb-navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 20px rgba(102, 126, 234, 0.35);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sb-brand {
+  color: white !important;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+.sb-nav-link {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  padding: 7px 14px !important;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sb-nav-link:hover,
+.sb-nav-link.active {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.sb-toggler {
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: white;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.sb-toggler:focus {
+  box-shadow: none;
+}
+
+.sb-avatar {
+  background: white;
+  color: #667eea;
+  font-weight: 800;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: default;
+  user-select: none;
+}

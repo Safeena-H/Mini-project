@@ -1,0 +1,121 @@
+.add-note-page {
+  min-height: 100vh;
+  background: #f8faff;
+}
+
+/* ── Page Header ──────────────────────────────── */
+
+.add-note-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.add-note-back-btn {
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border-radius: 9px;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-top: 4px;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.add-note-back-btn:hover {
+  background: #f5f3ff;
+  border-color: #667eea;
+}
+
+.add-note-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.add-note-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ── Form Card ────────────────────────────────── */
+
+.add-note-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Textarea ─────────────────────────────────── */
+
+.add-note-textarea {
+  resize: vertical;
+  min-height: 220px;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Word Count ───────────────────────────────── */
+
+.add-note-wordcount {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* ── AI Hint Banner ───────────────────────────── */
+
+.add-note-ai-hint {
+  background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 0.875rem;
+  color: #4c1d95;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.5;
+}
+
+.add-note-ai-hint i {
+  font-size: 1.1rem;
+  margin-top: 1px;
+}
+
+/* ── Success Alert ────────────────────────────── */
+
+.add-note-success-alert {
+  background: #d1fae5;
+  border-left: 4px solid #059669;
+  color: #065f46;
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Responsive ───────────────────────────────── */
+
+@media (max-width: 576px) {
+  .add-note-card {
+    padding: 22px 18px;
+  }
+
+  .add-note-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-note-title {
+    font-size: 1.35rem;
+  }
+}

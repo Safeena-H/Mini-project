@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f8faff;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* ── Global Buttons ─────────────────────────────── */
+
+.sb-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white !important;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sb-btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.sb-btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.sb-btn-outline {
+  border: 2px solid white;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sb-btn-outline:hover {
+  background: white;
+  color: #667eea !important;
+}
+
+.sb-btn-ghost {
+  background: #f3f4f6;
+  color: #374151 !important;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.sb-btn-ghost:hover {
+  background: #e5e7eb;
+}
+
+/* ── Global Form Overrides ──────────────────────── */
+
+.form-control,
+.form-select {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #1f2937;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  outline: none;
+}
+
+.input-group-text {
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.form-label {
+  color: #374151;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+/* ── Color Utilities ────────────────────────────── */
+
+.text-purple { color: #7c3aed !important; }
+.text-blue   { color: #2563eb !important; }
+.text-green  { color: #059669 !important; }
+.text-orange { color: #ea580c !important; }
