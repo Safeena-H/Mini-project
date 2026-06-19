@@ -1,0 +1,133 @@
+.notes-list-page {
+  min-height: 100vh;
+  background: #f8faff;
+}
+
+/* ── Page Header ─────────────────────────────── */
+
+.notes-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.notes-list-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.notes-list-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ── Search and Filter ───────────────────────── */
+
+.notes-list-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.notes-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* search icon sits inside the input on the left */
+.notes-search__icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+/* extra left padding so text does not overlap the icon */
+.notes-search__input {
+  padding-left: 40px;
+}
+
+.notes-filter-select {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+/* ── Subject Heading ─────────────────────────── */
+
+.subject-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.subject-heading__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.subject-heading__count {
+  font-size: 0.75rem;
+  background: #ede9fe;
+  color: #7c3aed;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* ── Shimmer Card ────────────────────────────── */
+
+.notes-shimmer-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #e5e7eb;
+}
+
+/* ── Empty State ─────────────────────────────── */
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state__icon {
+  font-size: 3rem;
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.empty-state h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 22px;
+}
+
+/* ── Responsive ──────────────────────────────── */
+
+@media (max-width: 576px) {
+  .notes-filter-select {
+    width: 100%;
+  }
+}
