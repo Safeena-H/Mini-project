@@ -6,34 +6,41 @@ import AddNote from './pages/AddNote'
 import NotesList from './pages/NotesList'
 import { getProfile } from './utils/localStorage'
 
-const App = () => {
-  // check if student has already set up their profile
+// ProtectedRoute runs every time a protected URL is visited
+// so getProfile() is always fresh — not stuck with the old value
+const ProtectedRoute = () => {
   const profile = getProfile()
+  // if profile exists → show the page (inside Layout which has Navbar)
+  // if no profile → send to profile setup
+  return profile ? <Layout /> : <Navigate to="/profile" replace />
+}
 
+// GuestRoute runs every time /profile is visited
+const GuestRoute = () => {
+  const profile = getProfile()
+  // if profile already exists → skip setup, go to dashboard
+  // if no profile → show the setup form
+  return profile ? <Navigate to="/dashboard" replace /> : <ProfileSetup />
+}
+
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* when app opens, send to dashboard if profile exists, else profile setup */}
-        <Route
-          path="/"
-          element={<Navigate to={profile ? '/dashboard' : '/profile'} replace />}
-        />
+        {/* root always tries dashboard — ProtectedRoute handles the profile check */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-        {/* profile setup page has no Navbar — only shown to new students */}
-        <Route
-          path="/profile"
-          element={profile ? <Navigate to="/dashboard" replace /> : <ProfileSetup />}
-        />
+        {/* /profile uses GuestRoute so it checks localStorage every time */}
+        <Route path="/profile" element={<GuestRoute />} />
 
-        {/* all pages inside here share the Layout (which has the Navbar) */}
-        {/* if no profile, redirect to setup instead of showing the page */}
-        <Route element={profile ? <Layout /> : <Navigate to="/profile" replace />}>
+        {/* all protected pages go inside ProtectedRoute */}
+        <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-note" element={<AddNote />} />
           <Route path="/notes" element={<NotesList />} />
         </Route>
 
-        {/* catch any unknown URL and send to home */}
+        {/* any unknown URL → home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
