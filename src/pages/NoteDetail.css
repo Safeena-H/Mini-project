@@ -1,0 +1,288 @@
+.note-detail-page {
+  min-height: 100vh;
+  background: #f8faff;
+}
+
+/* ── Top Bar ─────────────────────────────── */
+
+.note-detail-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.note-detail-back-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.note-detail-back-btn:hover {
+  color: #111827;
+}
+
+.note-detail-edit-btn {
+  border: 1.5px solid #7c3aed;
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.note-detail-edit-btn:hover {
+  background: #ede9fe;
+}
+
+.note-detail-delete-btn {
+  border: 1.5px solid #dc2626;
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.note-detail-delete-btn:hover {
+  background: #fef2f2;
+}
+
+.note-detail-cancel-btn {
+  border: 1.5px solid #d1d5db;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.note-detail-cancel-btn:hover {
+  background: #f9fafb;
+}
+
+/* ── Delete Confirmation Banner ─────────── */
+
+.delete-confirm-banner {
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.delete-confirm-banner__text {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ── Note Header Card ───────────────────── */
+
+.note-detail-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border-top: 4px solid;
+}
+
+/* top border colors match NoteCard left border colors */
+.note-detail-card--purple { border-color: #7c3aed; }
+.note-detail-card--blue   { border-color: #2563eb; }
+.note-detail-card--green  { border-color: #059669; }
+.note-detail-card--teal   { border-color: #0891b2; }
+.note-detail-card--orange { border-color: #ea580c; }
+.note-detail-card--pink   { border-color: #db2777; }
+.note-detail-card--red    { border-color: #dc2626; }
+.note-detail-card--cyan   { border-color: #06b6d4; }
+.note-detail-card--indigo { border-color: #4f46e5; }
+
+.note-detail-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note-detail-subject {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.note-detail-date {
+  font-size: 0.82rem;
+  color: #9ca3af;
+}
+
+.note-detail-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.note-detail-title-input {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.note-detail-topic {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.note-detail-wordcount {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+/* ── Content Card ───────────────────────── */
+
+.note-detail-content-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.note-detail-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.note-detail-content {
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.85;
+  /* white-space: pre-wrap preserves newlines the student typed */
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.note-detail-content-textarea {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: #374151;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+/* ── AI Analysis Section ────────────────── */
+
+.ai-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border: 1.5px solid #ede9fe;
+}
+
+.ai-placeholder {
+  text-align: center;
+  padding: 28px 20px;
+}
+
+.ai-placeholder__icon {
+  font-size: 2.4rem;
+  color: #c4b5fd;
+  margin-bottom: 12px;
+}
+
+.ai-placeholder__text {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* ── AI Results ─────────────────────────── */
+
+.ai-results__summary {
+  background: #f8f5ff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.ai-results__summary-label,
+.ai-results__concepts-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #7c3aed;
+  margin-bottom: 8px;
+}
+
+.ai-results__summary-text {
+  color: #374151;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.ai-results__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* each key concept shown as a colored pill */
+.concept-chip {
+  display: inline-block;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd6fe;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 576px) {
+  .note-detail-card,
+  .note-detail-content-card,
+  .ai-section {
+    padding: 18px 16px;
+  }
+
+  .note-detail-title {
+    font-size: 1.3rem;
+  }
+}

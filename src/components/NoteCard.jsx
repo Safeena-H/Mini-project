@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './NoteCard.css'
 
 // maps each subject to a colour for the left border of the card
@@ -31,8 +32,9 @@ const NoteCard = ({ note }) => {
       : note.content
 
   return (
+    // Link wraps the whole card — clicking anywhere on the card opens the note detail page
     // note-card--blue, note-card--green etc. change the left border colour
-    <div className={`note-card note-card--${color}`}>
+    <Link to={`/notes/${note.id}`} className={`note-card note-card--${color}`} style={{ textDecoration: 'none', display: 'block' }}>
 
       {/* top row: subject badge on left, date on right */}
       <div className="note-card__header">
@@ -53,7 +55,7 @@ const NoteCard = ({ note }) => {
           <i className="bi bi-stars me-1"></i> AI Analyzed
         </div>
       )}
-    </div>
+    </Link>
   )
 }
 

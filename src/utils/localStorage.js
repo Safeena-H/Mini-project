@@ -31,6 +31,13 @@ export const deleteNote = (id) => {
   localStorage.setItem('sb_notes', JSON.stringify(notes))
 }
 
+export const updateNote = (id, updates) => {
+  // map through all notes — when id matches, merge updates into that note
+  // spread (...) keeps existing fields, then overwrites only the ones in updates
+  const notes = getNotes().map((n) => (n.id === id ? { ...n, ...updates } : n))
+  localStorage.setItem('sb_notes', JSON.stringify(notes))
+}
+
 export const getScores = () => {
   const data = localStorage.getItem('sb_scores')
   // if no scores yet, return empty array
