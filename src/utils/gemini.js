@@ -26,9 +26,14 @@ Respond with exactly this JSON format:
   "keyConcepts": ["concept 1", "concept 2", "concept 3", "concept 4", "concept 5"]
 }`
 
-  const response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+  // AQ. format keys use Bearer token auth instead of ?key= query param
+  const response = await fetch(GEMINI_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+      'x-goog-api-key': apiKey,
+    },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
       // temperature 0.2 keeps responses factual and consistent
