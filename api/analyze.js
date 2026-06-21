@@ -1,30 +1,19 @@
-// Vercel serverless function — runs on the server, not in the browser
-// This is why the API key works here even though it doesn't work client-side
-import { GoogleGenerativeAI } from '@google/generative-ai'
+// Vercel serverless function — calls Groq AI to analyze student notes
+// Groq is free and gives standard API keys that work server-side
 
 export default async function handler(req, res) {
-  // only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
   const { title, content } = req.body
-
-  // process.env works on the server — no VITE_ prefix needed here
-  const apiKey = process.env.VITE_GEMINI_API_KEY
+  const apiKey = process.env.GROQ_API_KEY
 
   if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured on server' })
+    return res.status(500).json({ error: 'GROQ_API_KEY is not configured on server' })
   }
 
-  try {
-    const genAI = new GoogleGenerativeAI(apiKey)
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      generationConfig: { temperature: 0.2 },
-    })
-
-    const prompt = `You are a study assistant helping a student revise their notes.
+  const prompt = `You are a study assistant helping a student revise their notes.
 Analyze the following student note and respond with ONLY a valid JSON object — no markdown, no explanation, no extra text.
 
 Note Title: ${title}
@@ -36,12 +25,35 @@ Respond with exactly this JSON format:
   "keyConcepts": ["concept 1", "concept 2", "concept 3", "concept 4", "concept 5"]
 }`
 
-    const result = await model.generateContent(prompt)
-    const raw = result.response.text().trim()
+  try {
+    // Groq uses OpenAI-compatible API format
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+      }),
+    })
 
-    // parse Gemini's JSON response and send it back to the browser
+    if (!response.ok) {
+      const err = await response.json()
+      throw new Error(err?.error?.message || 'Groq API request failed')
+    }
+
+    const data = await response.json()
+
+    // Groq returns the text inside choices[0].message.content
+    const raw = data.choices?.[0]?.message?.content?.trim()
+
+    if (!raw) throw new Error('Empty response from Groq')
+
     return res.status(200).json(JSON.parse(raw))
   } catch (err) {
-    return res.status(500).json({ error: err.message || 'Gemini API failed' })
+    return res.status(500).json({ error: err.message || 'Analysis failed' })
   }
 }
