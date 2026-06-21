@@ -1,9 +1,6 @@
-// Gemini API helper — sends note content and gets back summary + key concepts
+// Gemini API helper — uses the official Google AI SDK which handles all key formats
 // The API key is stored in .env.local as VITE_GEMINI_API_KEY
-// Vite exposes env variables that start with VITE_ to the browser via import.meta.env
-
-const GEMINI_URL =
-  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 export const analyzeNote = async (title, content) => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY
@@ -11,6 +8,16 @@ export const analyzeNote = async (title, content) => {
   if (!apiKey) {
     throw new Error('VITE_GEMINI_API_KEY is not set in .env.local')
   }
+
+  // GoogleGenerativeAI handles authentication automatically for all key types
+  const genAI = new GoogleGenerativeAI(apiKey)
+
+  // gemini-1.5-flash is fast and free on the AI Studio free tier
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-1.5-flash',
+    // temperature 0.2 keeps responses factual and consistent
+    generationConfig: { temperature: 0.2 },
+  })
 
   // the prompt tells Gemini exactly what format to respond in
   // asking for JSON directly avoids having to parse messy text
@@ -26,30 +33,10 @@ Respond with exactly this JSON format:
   "keyConcepts": ["concept 1", "concept 2", "concept 3", "concept 4", "concept 5"]
 }`
 
-  // AQ. format keys use Bearer token auth instead of ?key= query param
-  const response = await fetch(GEMINI_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-      'x-goog-api-key': apiKey,
-    },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      // temperature 0.2 keeps responses factual and consistent
-      generationConfig: { temperature: 0.2 },
-    }),
-  })
+  const result = await model.generateContent(prompt)
 
-  if (!response.ok) {
-    const err = await response.json()
-    throw new Error(err?.error?.message || 'Gemini API request failed')
-  }
-
-  const data = await response.json()
-
-  // Gemini returns the text inside candidates[0].content.parts[0].text
-  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+  // getText() returns the raw text from Gemini's response
+  const raw = result.response.text().trim()
 
   if (!raw) throw new Error('Empty response from Gemini')
 
