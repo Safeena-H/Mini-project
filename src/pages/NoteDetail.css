@@ -273,6 +273,13 @@
   border: 1px solid #ddd6fe;
 }
 
+/* error text shown below the analyze button when API call fails */
+.ai-error-text {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
 /* ── Responsive ──────────────────────────── */
 
 @media (max-width: 576px) {

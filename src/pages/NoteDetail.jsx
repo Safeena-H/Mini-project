@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Shimmer from '../components/Shimmer'
 import { getNotes, updateNote, deleteNote } from '../utils/localStorage'
+import { analyzeNote } from '../utils/gemini'
 import './NoteDetail.css'
 
 // color map — same as NoteCard so the accent color stays consistent
@@ -36,6 +37,12 @@ const NoteDetail = () => {
 
   // controls the visibility of the delete confirmation dialog
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+
+  // true while the Gemini API call is in progress — shows spinner on analyze button
+  const [analyzing, setAnalyzing] = useState(false)
+
+  // stores the error message if the Gemini API call fails
+  const [analyzeError, setAnalyzeError] = useState('')
 
   // load the note on page open — short delay so shimmer is visible
   useEffect(() => {
@@ -80,6 +87,29 @@ const NoteDetail = () => {
     deleteNote(id)
     // go back to notes list after deleting
     navigate('/notes', { replace: true })
+  }
+
+  // sends the note to Gemini and saves the results back to localStorage
+  const handleAnalyze = async () => {
+    setAnalyzing(true)
+    setAnalyzeError('')
+
+    try {
+      // call Gemini — returns { summary: '...', keyConcepts: [...] }
+      const result = await analyzeNote(note.title, note.content)
+
+      // save summary and keyConcepts to localStorage so they persist on refresh
+      updateNote(id, { summary: result.summary, keyConcepts: result.keyConcepts })
+
+      // update local state so the page shows the results immediately without a reload
+      setNote((prev) => ({ ...prev, summary: result.summary, keyConcepts: result.keyConcepts }))
+    } catch (err) {
+      // show the error message under the button so the student knows what went wrong
+      setAnalyzeError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      // always turn off the spinner, whether success or failure
+      setAnalyzing(false)
+    }
   }
 
   // format ISO date to readable string like "16 June 2024"
@@ -294,11 +324,26 @@ const NoteDetail = () => {
                   <p className="ai-placeholder__text">
                     Get an AI-generated summary and key concepts for this note
                   </p>
-                  {/* this button will be wired up in the ai-analysis feature branch */}
-                  <button className="btn sb-btn-primary" disabled>
-                    <i className="bi bi-stars me-2"></i>Analyze with AI
-                    <span className="ms-2 badge bg-light text-purple">Coming soon</span>
+                  {/* clicking this calls the Gemini API and fills in the summary and key concepts */}
+                  <button
+                    className="btn sb-btn-primary"
+                    onClick={handleAnalyze}
+                    disabled={analyzing}
+                  >
+                    {analyzing ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" />
+                        Analyzing...
+                      </>
+                    ) : (
+                      <><i className="bi bi-stars me-2"></i>Analyze with AI</>
+                    )}
                   </button>
+
+                  {/* shows if the API call fails — e.g. wrong key, network error */}
+                  {analyzeError && (
+                    <p className="ai-error-text mt-3">{analyzeError}</p>
+                  )}
                 </div>
               )}
             </div>
