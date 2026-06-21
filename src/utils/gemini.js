@@ -3,7 +3,7 @@
 // Vite exposes env variables that start with VITE_ to the browser via import.meta.env
 
 const GEMINI_URL =
-  'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent'
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
 
 export const analyzeNote = async (title, content) => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY
