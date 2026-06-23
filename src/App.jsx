@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import AddNote from './pages/AddNote'
 import NotesList from './pages/NotesList'
 import NoteDetail from './pages/NoteDetail'
+import Quiz from './pages/Quiz'
 import { getProfile } from './utils/localStorage'
 
 // ProtectedRoute runs every time a protected URL is visited
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/notes" element={<NotesList />} />
           {/* :id is a URL parameter — matches any note id like /notes/1718123456789 */}
           <Route path="/notes/:id" element={<NoteDetail />} />
+          <Route path="/quiz" element={<Quiz />} />
         </Route>
 
         {/* any unknown URL → home */}
