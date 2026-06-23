@@ -1,0 +1,221 @@
+.scores-page {
+  min-height: 100vh;
+  background: #f8faff;
+}
+
+/* ── Page Header ─────────────────────────── */
+
+.scores-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.scores-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.scores-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ── Stat Cards ──────────────────────────── */
+
+.score-stat-shimmer {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+}
+
+.score-stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+}
+
+.score-stat-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+}
+
+/* icon background colors per color variant */
+.score-stat-card--purple .score-stat-card__icon { background: #ede9fe; color: #7c3aed; }
+.score-stat-card--orange .score-stat-card__icon { background: #ffedd5; color: #ea580c; }
+.score-stat-card--blue   .score-stat-card__icon { background: #dbeafe; color: #2563eb; }
+.score-stat-card--green  .score-stat-card__icon { background: #d1fae5; color: #059669; }
+
+.score-stat-card__label {
+  font-size: 0.78rem;
+  color: #6b7280;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.score-stat-card__value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+/* ── History Card ────────────────────────── */
+
+.scores-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+.scores-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+/* ── Score Item ──────────────────────────── */
+
+.score-item-shimmer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.score-item:last-child {
+  border-bottom: none;
+}
+
+/* score percentage circle */
+.score-item__circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.score-item__circle--green  { background: #d1fae5; color: #059669; }
+.score-item__circle--orange { background: #ffedd5; color: #ea580c; }
+.score-item__circle--red    { background: #fee2e2; color: #dc2626; }
+
+.score-item__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.score-item__note {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+  /* truncate long note titles */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.score-item__subject {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.score-item__date {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+/* correct/total badge */
+.score-item__badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.score-item__badge--green  { background: #d1fae5; color: #059669; }
+.score-item__badge--orange { background: #ffedd5; color: #ea580c; }
+.score-item__badge--red    { background: #fee2e2; color: #dc2626; }
+
+/* ── Empty State ─────────────────────────── */
+
+.scores-empty {
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.scores-empty__icon {
+  font-size: 3rem;
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.scores-empty h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.scores-empty p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 22px;
+}
+
+/* ── Responsive ──────────────────────────── */
+
+@media (max-width: 576px) {
+  .scores-card {
+    padding: 18px 16px;
+  }
+
+  .score-item__badge {
+    display: none;
+  }
+}
